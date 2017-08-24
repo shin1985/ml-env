@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install -y \
   mecab-ipadic-utf8 \
   wget \
   language-pack-ja-base \
-  language-pack-ja
+  language-pack-ja \
+  jq
 
 # Install Juman & KNP & NEologd
 RUN mkdir /home/root
@@ -54,6 +55,7 @@ RUN cd mecab-ipadic-neologd && \
 
 WORKDIR /home/root
 RUN rm -rf /home/root/mecab-ipadic-neologd
+RUN ln -s /usr/lib/mecab/dic/mecab-ipadic-neologd /var/lib/mecab/dic/.
 
 # Create user
 RUN mkdir /home/ml
